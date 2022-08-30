@@ -1,14 +1,14 @@
 public class PasswordChecker {
     public static PasswordStrength check(String pw) {
-        if(confirmEmptyAndNull(pw)){
+        if(isEmptyOrNull(pw)){
             throw new IllegalArgumentException();
         }
 
-        return confirmStrength(confirmStrengthNum(pw));
+        return confirmStrength(countStrength(pw));
 
     }
 
-    private static boolean confirmEmptyAndNull(String pw) {
+    private static boolean isEmptyOrNull(String pw) {
         return pw == null || pw.isBlank();
     }
 
@@ -24,9 +24,9 @@ public class PasswordChecker {
         return PasswordStrength.WEAKNESS;
     }
 
-    private static int confirmStrengthNum(String pw) {
+    private static int countStrength(String pw) {
         int checkerNum = 0;
-        if(isLength(pw)) checkerNum++;
+        if(isMoreThanEight(pw)) checkerNum++;
         if(containNumber(pw)) checkerNum++;
         if(containUpperCase(pw)) checkerNum++;
         return checkerNum;
@@ -36,7 +36,7 @@ public class PasswordChecker {
         return pw.matches(".*[0-9].*");
     }
 
-    private static boolean isLength(String pw) {
+    private static boolean isMoreThanEight(String pw) {
         return pw.length() >= 8;
     }
 
