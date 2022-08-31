@@ -13,4 +13,13 @@ class LottoTest {
     }
 
 
+    @Test
+    @DisplayName("금액만큼의 로또갯수 구입")
+    void buyLength() {
+        LottoShop lottoShop = new LottoShop();
+        Assertions.assertEquals(lottoShop.buy(30000).length(), 30);
+        Assertions.assertEquals(lottoShop.buy(4000).length(), 4);
+    }
+
+
 }
